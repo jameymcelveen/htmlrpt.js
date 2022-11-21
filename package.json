@@ -1,0 +1,23 @@
+{
+  "name": "simple-web-report",
+  "private": true,
+  "version": "2022.11.21.00",
+  "description": "A simple way to print web based reports",
+  "keywords": [],
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "node app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jameymcelveen/simple-web-report.git"
+  },
+  "author": "jamey@mcelveen.us",
+  "license": "MIT",
+  "engines": {
+    "node": "^16.13"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8"
+  }
+}
