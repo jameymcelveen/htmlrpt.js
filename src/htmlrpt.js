@@ -1,28 +1,25 @@
-var HtmlRpt = HtmlRpt || __InitHtmlRpt();
+var HtmlRpt = HtmlRpt || __initHtmlReports();
 
-function __InitHtmlRpt() {
+function __initHtmlReports() {
   const _reportAttr = 'report-src';
   const _reportFrameId = '__htmlReportFrame';
   const _reportElements = document.querySelectorAll('[' + _reportAttr + ']');
+  const _byId = document.getElementById;
+  const _addChild = document.body.appendChild;
 
   let _reportFrame = null;
 
-  let _initReports = function() {
-    _reportFrame = document.getElementById(_reportFrameId);
+  let __initHtmlReports = function() {
+    _reportFrame = _byId(_reportFrameId);
     if (_reportFrame == null) {
       _reportFrame = document.createElement("iframe");
       _reportFrame.id = _reportFrameId;
       _reportFrame.style.display = "none";
-      document.body.appendChild(_reportFrame);
+      _addChild(_reportFrame);
     }
   };
 
-  let _bindElements = function () {
-    _reportElements.forEach(r => {
-      r.onclick = _renderReport(r.attributes[_reportAttr].value);
-    });
-  };
-
+  //r.attributes[_reportAttr].value
   let _renderReport = function (reportUri) {
     _reportFrame.addEventListener("load", function () {
       _reportFrame.contentWindow.print();
@@ -30,7 +27,14 @@ function __InitHtmlRpt() {
     _reportFrame.src = reportUri;
   };
 
-  _initReports();
+  let _bindElements = function (attrValue) {
+    _reportElements.forEach(r => {
+      let clickEvent = _renderReport(attrValue);
+      r.onclick = clickEvent;
+    });
+  };
+
+  __initHtmlReports();
   _bindElements();
 
   return {
