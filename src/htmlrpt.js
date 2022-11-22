@@ -1,22 +1,13 @@
-var HtmlRpt = HtmlRpt == null ? {} : HtmlRpt;
+var HtmlRpt = HtmlRpt || __InitHtmlRpt();
 
-(() => {
-  document.getElementById('report1').onclick = e => {
-    alert('hello');
-    HtmlRpt.RenderReport('report1.html');
-  };
-
+function __InitHtmlRpt() {
   const _reportAttr = 'report-src';
   const _reportFrameId = '__htmlReportFrame';
   const _reportElements = document.querySelectorAll('[' + _reportAttr + ']');
 
   let _reportFrame = null;
 
-  _reportElements.forEach(r => {
-    r.onclick = HtmlRpt.RenderReport(r.attributes[_reportTagAttr].value);
-  });
-
-  let _initReportFrame = () => {
+  let _initReports = function() {
     _reportFrame = document.getElementById(_reportFrameId);
     if (_reportFrame == null) {
       _reportFrame = document.createElement("iframe");
@@ -26,14 +17,23 @@ var HtmlRpt = HtmlRpt == null ? {} : HtmlRpt;
     }
   };
 
-  let _renderReport = function(reportUri) {
-    _initReportFrame();
-    _reportFrame.addEventListener("load", function() {
+  let _bindElements = function () {
+    _reportElements.forEach(r => {
+      r.onclick = _renderReport(r.attributes[_reportAttr].value);
+    });
+  };
+
+  let _renderReport = function (reportUri) {
+    _reportFrame.addEventListener("load", function () {
       _reportFrame.contentWindow.print();
     });
     _reportFrame.src = reportUri;
   };
 
-  HtmlRpt.RenderReport = _renderReport;
+  _initReports();
+  _bindElements();
 
-})();
+  return {
+    RenderReport: _renderReport
+  }
+}
