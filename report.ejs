@@ -6,5 +6,13 @@
 </head>
 <body>
 <%= people.join(", "); %>
+<%= people.FirstName%>&nbsp;<%= people.LastName%>
+<script id="people"  type="text/sql">
+    SELECT
+        FirstName,
+        LastName
+    FROM
+        People
+</script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Web Report</title>
+</head>
+<body>
+<button id="report1">Print Report 1</button>
+<button id="report2">Print Report 2</button>
+<script>
+  var HtmlReport = HtmlReport || {};
+  (() => {
+    document.getElementById('report1').onclick = e => {
+      alert('hello');
+      HtmlReport.RenderReport('report1.html');
+    };
+
+    let iFrame = null;
+    const iFrameId = '__HtmlReport_iFrame';
+    let initFrame = () => {
+      iFrame = document.getElementById(iFrameId);
+      if (iFrame == null) {
+        iFrame = document.createElement("iframe");
+        iFrame.id = iFrameId;
+        iFrame.style.display = "none";
+        document.body.appendChild(iFrame);
+      }
+    };
+
+    HtmlReport.RenderReport = function(reportUri) {
+      initFrame();
+      iFrame.addEventListener("load", function() {
+        iFrame.contentWindow.print();
+      });
+      iFrame.src = reportUri;
+    };
+  })();
+</script>
+</body>
+</html>
