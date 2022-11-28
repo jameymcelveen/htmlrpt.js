@@ -1,11 +1,12 @@
 {
-  "name": "simple-web-report",
+  "name": "html-report",
   "private": true,
   "version": "2022.11.21.00",
   "description": "A simple way to print web based reports",
   "keywords": [],
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "minify src/htmlrpt.js --outFile lib/htmlrpt.min.js"
   },
   "main": "node app.js",
   "repository": {
@@ -25,5 +26,7 @@
     "grunt-npm-install": "^0.3.1",
     "grunt-contrib-jshint": "^v3.0.0",
     "grunt-contrib-uglify": "^v5.2.1"
+    "babel-minify": "^0.5.2",
+    "babel-preset-minify": "^0.5.2"
   }
 }

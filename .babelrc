@@ -1,0 +1,11 @@
+{
+  "presets": ["minify", {
+    "mangle": {
+      "exclude": ["MyCustomError"]
+    },
+    "unsafe": {
+      "typeConstructors": false
+    },
+    "keepFnName": true
+  }]
+}
