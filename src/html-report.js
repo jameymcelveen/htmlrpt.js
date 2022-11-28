@@ -1,40 +1,45 @@
-const HtmlReport = (() => {
-  let _iframe = null
-  const _iframeId = '__html_report_iframe'
+const HtmlReport = HtmlReport || htmlReport.getInstance()
 
-  const _initialize = () => {
+class htmlReport {
+  static _instance = null
 
+  static getInstance() {
+    if(htmlReport._instance === null) {
+      htmlReport._instance = new htmlReport()
+    }
+    return htmlReport._instance
+  }
+
+  constructor() {
+    this.iframe = null
+    this.iframeId = '__html_report_iframe'
+    document.addEventListener('DOMContentLoaded', this.initialize)
+  }
+
+  initialize() {
     // Add the hidden iframe
-    _iframe = document.createElement('iframe')
-    _iframe.id = _iframeId
-    _iframe.style.display = 'none'
-    document.body.appendChild(_iframe)
+    this.iframe = document.createElement('iframe')
+    this.iframe.id = this.iframeId
+    this.iframe.style.display = 'none'
+    document.body.appendChild(this.iframe)
 
     // Bind all tags that contain the class name '.html-report'
     let htmlReports = document.getElementsByClassName('html-report')
     for (let i = 0; i < htmlReports.length; i++) {
       let htmlReport = htmlReports[i]
-      htmlReport.onclick = function (element) {
+      htmlReport.onclick = (element) => {
         let reportSrc = element.target.dataset.reportSrc
         if (reportSrc && reportSrc.trim() !== '') {
-          _renderReport(reportSrc)
+          this.renderReport(reportSrc)
         }
       }
     }
   }
 
-  const _renderReport = (reportUri) => {
-    _iframe.addEventListener('load', function () {
-      _iframe.contentWindow.print()
+  renderReport(reportUri) {
+    this.iframe.addEventListener('load', function () {
+      this.iframe.contentWindow.print()
     });
-    _iframe.src = reportUri
+    this.iframe.src = reportUri
   }
-
-  // Initialize after the DOM loads
-  document.addEventListener('DOMContentLoaded', () => _initialize())
-
-  return {
-    renderReport: _renderReport
-  }
-
-})()
+}
