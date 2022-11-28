@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"./bin/html-report.min.js",
+"lineCount":1,
+"mappings":"AAAA,MAAMA,WAAc,CAAA,EAAA,EAAM,CACxB,IAAIC,EAAU,IAGd,OAAMC,EAAc,EAAAA,EAAM,CAGxBD,CAAA,CAAUE,QAASC,CAAAA,aAAT,CAAuB,QAAvB,CACVH,EAAQI,CAAAA,EAAR,CANgBC,sBAOhBL,EAAQM,CAAAA,KAAMC,CAAAA,OAAd,CAAwB,MACxBL,SAASM,CAAAA,IAAKC,CAAAA,WAAd,CAA0BT,CAA1B,CAGA,KAAIU,EAAcR,QAASS,CAAAA,sBAAT,CAAgC,aAAhC,CAClB,KAAK,IAAIC,EAAI,CAAb,CAAgBA,CAAhB,CAAoBF,CAAYG,CAAAA,MAAhC,CAAwCD,CAAA,EAAxC,CACmBF,CAAAI,CAAYF,CAAZE,CACNC,CAAAA,OAAX,CAAqBC,QAAS,CAACC,CAAD,CAAU,CAEtC,CADIC,CACJ,CADgBD,CAAQE,CAAAA,MAAOC,CAAAA,OAAQF,CAAAA,SACvC,GAAsC,EAAtC,GAAiBA,CAAUG,CAAAA,IAAV,EAAjB,EACEC,CAAA,CAAcJ,CAAd,CAHoC,CAZlB,CAA1B,CAqBMI,EAAiBC,CAADD,EAAe,CACnCtB,CAAQwB,CAAAA,gBAAR,CAAyB,MAAzB,CAAiC,QAAS,EAAG,CAC3CxB,CAAQyB,CAAAA,aAAcC,CAAAA,KAAtB,EAD2C,CAA7C,CAGA1B,EAAQ2B,CAAAA,GAAR,CAAcJ,CAJqB,CAQrCrB,SAASsB,CAAAA,gBAAT,CAA0B,kBAA1B,CAA8C,EAAA,EAAMvB,CAAA,EAApD,CAEA,OAAO,CACL2B,aAAcN,CADT,CAnCiB,CAAN,CAAD;",
+"sources":["./src/html-report.js"],
+"names":["HtmlReport","_iframe","_initialize","document","createElement","id","_iframeId","style","display","body","appendChild","htmlReports","getElementsByClassName","i","length","htmlReport","onclick","htmlReport.onclick","element","reportSrc","target","dataset","trim","_renderReport","reportUri","addEventListener","contentWindow","print","src","renderReport"]
+}

@@ -9,7 +9,7 @@ const ejs = require('ejs');
 const hostname = '127.0.0.1';
 const port = 3000;
 
-fs.readFile( __dirname + '/report.ejs', 'utf-8', function (err, template) {
+fs.readFile( __dirname + 'src/report3.ejs', 'utf-8', function (err, template) {
   if (err) {
     throw err;
   }
