@@ -1,7 +1,7 @@
 {
   "name": "html-report",
   "private": true,
-  "version": "2022.11.21.00",
+  "version": "20221128.0.1",
   "description": "A simple way to print web based reports",
   "keywords": [],
   "scripts": {
@@ -17,16 +17,5 @@
   "license": "MIT",
   "engines": {
     "node": "^16.13"
-  },
-  "dependencies": {
-    "ejs": "^3.1.8"
-  },
-  "devDependencies": {
-    "buble": "^0.20.0",
-    "grunt-npm-install": "^0.3.1",
-    "grunt-contrib-jshint": "^v3.0.0",
-    "grunt-contrib-uglify": "^v5.2.1"
-    "babel-minify": "^0.5.2",
-    "babel-preset-minify": "^0.5.2"
   }
 }
