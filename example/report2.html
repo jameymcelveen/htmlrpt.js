@@ -3,11 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Report 2</title>
+  <link rel="stylesheet" href="../src/htmlrpt.css">
 </head>
 <body>
-<h1>Report 2</h1>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+<table>
+  <thead><tr><th>
+  <h1>Report 2</h1>
+  </th></tr></thead>
+  <tbody><tr><td>
+<table>
+  <thead>
+  <tr><td>Date</td><td>Count</td></tr>
+  </thead>
+  <tbody id="table-rows">
+  <tr><td>12/12/12</td><td>1</td></tr>
+  </tbody>
+  <tfoot>
+  <tr><td></td><td>Total:</td></tr>
+  </tfoot>
+</table>
+  </td></tr></tbody>
+</table>
+<script>
+  var reportFunction = function() {
+    var tbody = document.getElementById('table-rows')
+    for(var i=0;i<100;i++) {
+      var newRow = tbody.insertRow()
+      var newCell = newRow.insertCell();
+      var newText = document.createTextNode(i+1);
+      newCell.appendChild(newText);
+      newCell = newRow.insertCell();
+      newText = document.createTextNode(i+1);
+      newCell.appendChild(newText);
+    }
+  };
+  reportFunction();
+</script>
 </body>
 </html>
