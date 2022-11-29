@@ -1,43 +1,85 @@
-var HtmlRpt = HtmlRpt || __initHtmlReports();
+var HtmlReport = function() {
+  var _iframe = null
+  var _iframeId = '__html_report_iframe'
 
-function __initHtmlReports() {
-  const _reportAttr = 'report-src';
-  const _reportFrameId = '__htmlReportFrame';
-  const _reportElements = document.querySelectorAll('[' + _reportAttr + ']');
-  const _byId = document.getElementById;
-  const _addChild = document.body.appendChild;
+  var _renderReport = function(reportUri) {
+    _iframe.addEventListener('load', function () {
+      _iframe.contentWindow.print()
+    });
+    _iframe.src = reportUri
+  }
 
-  let _reportFrame = null;
+  var _initialize = function() {
+    // Add the hidden iframe
+    _iframe = document.createElement('iframe')
+    _iframe.id = _iframeId
+    _iframe.style.display = 'none'
+    document.body.appendChild(_iframe)
 
-  let __initHtmlReports = function() {
-    _reportFrame = _byId(_reportFrameId);
-    if (_reportFrame == null) {
-      _reportFrame = document.createElement("iframe");
-      _reportFrame.id = _reportFrameId;
-      _reportFrame.style.display = "none";
-      _addChild(_reportFrame);
+    // Bind all tags that contain the class name '.html-report'
+    var htmlReports = document.getElementsByClassName('html-rpt')
+    for (var i = 0; i < htmlReports.length; i++) {
+      var htmlReport = htmlReports[i]
+      htmlReport.onclick = (element) => {
+        var reportSrc = element.target.dataset.reportSrc
+        if (reportSrc && reportSrc.trim() !== '') {
+          _renderReport(reportSrc)
+        }
+      }
     }
-  };
+  }
 
-  //r.attributes[_reportAttr].value
-  let _renderReport = function (reportUri) {
-    _reportFrame.addEventListener("load", function () {
-      _reportFrame.contentWindow.print();
-    });
-    _reportFrame.src = reportUri;
-  };
-
-  let _bindElements = function (attrValue) {
-    _reportElements.forEach(r => {
-      let clickEvent = _renderReport(attrValue);
-      r.onclick = clickEvent;
-    });
-  };
-
-  __initHtmlReports();
-  _bindElements();
+  document.addEventListener('DOMContentLoaded', _initialize)
 
   return {
-    RenderReport: _renderReport
+    renderReport: _renderReport
+  }
+}();
+
+/*
+var __htmlReport_Instance = null;
+
+class htmlReport {
+
+  constructor() {
+    this.iframe = null
+    this.iframeId = '__html_report_iframe'
+    document.addEventListener('DOMContentLoaded', this.initialize)
+  }
+
+  initialize() {
+    // Add the hidden iframe
+    this.iframe = document.createElement('iframe')
+    this.iframe.id = this.iframeId
+    this.iframe.style.display = 'none'
+    document.body.appendChild(this.iframe)
+
+    // Bind all tags that contain the class name '.html-report'
+    let htmlReports = document.getElementsByClassName('html-report')
+    for (let i = 0; i < htmlReports.length; i++) {
+      let htmlReport = htmlReports[i]
+      htmlReport.onclick = (element) => {
+        let reportSrc = element.target.dataset.reportSrc
+        if (reportSrc && reportSrc.trim() !== '') {
+          this.renderReport(reportSrc)
+        }
+      }
+    }
+  }
+
+  renderReport(reportUri) {
+    this.iframe.addEventListener('load', function () {
+      this.iframe.contentWindow.print()
+    });
+    this.iframe.src = reportUri
   }
 }
+
+function __htmlReport_getInstance() {
+  if(__htmlReport_Instance == null) {
+    __htmlReport_Instance = new htmlReport()
+    __htmlReport_Instance.initialize()
+  }
+  return __htmlReport_Instance
+}
+/**/
